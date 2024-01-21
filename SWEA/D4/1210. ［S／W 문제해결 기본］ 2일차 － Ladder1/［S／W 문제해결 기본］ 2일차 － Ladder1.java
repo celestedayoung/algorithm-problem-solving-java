@@ -1,30 +1,38 @@
+/*
+* 0. 사다리 입력받기
+* 1. 도착 지점 찾기
+* 2. 도착 지점부터 거꾸로 올라가기
+*   2-1. 좌우로 이동
+*/
 import java.util.Scanner;
 
 public class Solution {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-
-        for (int r = 0; r < 10; r++) {
+        
+        for (int t = 0; t < 10; t++) {
             int testNum = sc.nextInt();
             int[][] ladder = new int[100][100];
 
-            // 사다리 입력 받기
+            // 0. 사다리 입력받기
             for (int i = 0; i < 100; i++) {
                 for (int j = 0; j < 100; j++) {
                     ladder[i][j] = sc.nextInt();
                 }
             }
-
+            
+            // 1. 도착 지점 찾기
             int colPoint = 0;
-            // 2가 위치하는 열 찾기
+    
             for (int i = 0; i < 100; i++) {
                 if (ladder[99][i] == 2) {
                     colPoint = i;
                     break;
                 }
             }
-
-            int rowPoint = 99;  // 가장 아래 행에서 시작
+            
+            // 2. 도착 지점부터 거꾸로 올라가기
+            int rowPoint = 99;
 
             while (rowPoint > 0) {
                 // 좌우로 이동
