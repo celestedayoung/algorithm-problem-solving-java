@@ -19,7 +19,6 @@ public class Main {
 
                 if (letters[l].equals(compare)) {
                     left -= letters[l].length();
-//                    String remove = testCase.substring(0, pointer + letters[l].length());
                     testCase = testCase.replaceFirst(compare, "x");
                     cnt++;
                 }
