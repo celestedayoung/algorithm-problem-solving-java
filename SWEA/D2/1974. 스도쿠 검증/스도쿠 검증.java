@@ -7,17 +7,16 @@ public class Solution {
     static StringTokenizer st;
     static int testNum;
     static int[][] board;
-    static int[] numCheck;
+    static int[] check;
     static boolean flag;
-    static int result;
 
     public static void main(String[] args) {
 
         sc = new Scanner(System.in);
+        testNum = sc.nextInt();
+        sc.nextLine();
 
-        testNum = Integer.parseInt(sc.nextLine());
-
-        for (int t = 1; t <= testNum; t++) {
+        for (int t = 1; t <= testNum ; t++) {
 
             board = new int[9][9];
             for (int i = 0; i < 9; i++) {
@@ -28,61 +27,55 @@ public class Solution {
             }
 
             flag = true;
-            result = 1;
 
-            //  행 우선 순회
+            // row direction
             if (flag) {
-                for (int r = 0; r < 9; r++) {
-                    numCheck = new int[10];
+                out: for (int r = 0; r < 9; r++) {
+                    check = new int[10];
                     for (int c = 0; c < 9; c++) {
-                        if (numCheck[board[r][c]] == 0) {
-                            numCheck[board[r][c]]++;
+                        if (check[board[r][c]] == 0) {
+                            check[board[r][c]]++;
                         } else {
-                            result = 0;
                             flag = false;
-                            break;
+                            break out;
                         }
                     }
                 }
             }
 
-            // 열 우선 순회
             if (flag) {
-                for (int c = 0; c < 9; c++) {
-                    numCheck = new int[10];
+                out: for (int c = 0; c < 9; c++) {
+                    check = new int[10];
                     for (int r = 0; r < 9; r++) {
-                        if (numCheck[board[r][c]] == 0) {
-                            numCheck[board[r][c]]++;
+                        if (check[board[r][c]] == 0) {
+                            check[board[r][c]]++;
                         } else {
-                            result = 0;
                             flag = false;
-                            break;
+                            break out;
                         }
                     }
                 }
             }
-            if (flag) {
-                for (int i = 0; i < 7; i += 3) {
-                    for (int j = 0; j < 7; j+= 3) {
-                        numCheck = new int[10];
 
-                        for (int r = i; r < i + 3; r ++) {
+            if (flag) {
+                out: for (int i = 0; i < 7; i+=3) {
+                    for (int j = 0; j < 7; j+=3) {
+                        check = new int[10];
+                        for (int r = i; r < i + 3; r++) {
                             for (int c = j; c < j + 3; c++) {
-                                if (numCheck[board[r][c]] == 0) {
-                                    numCheck[board[r][c]]++;
+                                if (check[board[r][c]] == 0) {
+                                    check[board[r][c]]++;
                                 } else {
-                                    result = 0;
                                     flag = false;
-                                    break;
+                                    break out;
                                 }
                             }
                         }
                     }
                 }
             }
-            System.out.printf("#%d %d%n", t, result);
+            System.out.printf("#%d %d%n", t, flag ? 1 : 0);
         }
+
     }
 }
-
-
