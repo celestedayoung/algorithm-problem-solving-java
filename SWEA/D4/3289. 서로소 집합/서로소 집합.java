@@ -13,23 +13,11 @@ import java.util.Scanner;
  * 
  * */
 
-class Edge {
-	
-	int start, end;
-	
-	public Edge(int start, int end) {
-		this.start = start;
-		this.end = end;
-	}
-	
-}
-
 public class Solution {
 	
 	static Scanner sc;
 	static StringBuilder sb;
 	static int testNum, n, m, operateNum, a, b;
-	static List<Edge> edges;
 	static int[] parent;
 	
 	public static void main(String[] args) {
