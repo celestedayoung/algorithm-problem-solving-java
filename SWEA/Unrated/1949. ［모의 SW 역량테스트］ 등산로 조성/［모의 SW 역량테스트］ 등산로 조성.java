@@ -34,8 +34,10 @@ public class Solution {
                     }
                 }
             }
+
             visited = new boolean[N][N];
             maxLength = 0;
+
             start();
 
             System.out.printf("#%d %s%n", t, maxLength);
@@ -67,19 +69,21 @@ public class Solution {
             int nr = r + dr[d];
             int nc = c + dc[d];
 
-            if (nr < 0 || nr >= N || nc < 0 || nc >= N || visited[nr][nc])  continue;
-            if (height <= mountain[nr][nc]) {
-                if (cnt == 0) {
-                    if (height > mountain[nr][nc] - K) {
-                        visited[nr][nc] = true;
-                        dfs(nr, nc, height - 1, length + 1, cnt + 1);
-                        visited[nr][nc] = false;
+            if (nr >= 0 && nr < N && nc >= 0 && nc < N && !visited[nr][nc]) {
+
+                if (height <= mountain[nr][nc]) {
+                    if (cnt == 0) {
+                        if (height > mountain[nr][nc] - K) {
+                            visited[nr][nc] = true;
+                            dfs(nr, nc, height - 1, length + 1, cnt + 1);
+                            visited[nr][nc] = false;
+                        }
                     }
+                } else {
+                    visited[nr][nc] = true;
+                    dfs(nr, nc, mountain[nr][nc], length + 1, cnt);
+                    visited[nr][nc] = false;
                 }
-            } else {
-                visited[nr][nc] = true;
-                dfs(nr, nc, mountain[nr][nc], length + 1, cnt);
-                visited[nr][nc] = false;
             }
 
         }
