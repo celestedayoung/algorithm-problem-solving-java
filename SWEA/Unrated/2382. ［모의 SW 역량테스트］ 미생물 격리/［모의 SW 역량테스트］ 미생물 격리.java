@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 class Microbe {
@@ -20,6 +19,7 @@ public class Solution {
     static int tc, N, M, K, r, c, num, direction;
     static Microbe[] tmp;
     static Deque<Microbe>[][] plate;
+    static Deque<Microbe>[][] newPlate;
 
     static int[] deltaR = {-1, 1, 0, 0};
     static int[] deltaC = {0, 0, -1, 1};
@@ -71,10 +71,13 @@ public class Solution {
 
     }
     public static void experiment() {
+
         int time = 0;
 
         while (time < M) {
-            Deque<Microbe>[][] newPlate = new Deque[N][N];
+
+            newPlate = new Deque[N][N];
+            
             for (int r = 0; r < N; r++) {
                 for (int c = 0; c < N; c++) {
                     newPlate[r][c] = new ArrayDeque<>();
